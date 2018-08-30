@@ -1,11 +1,12 @@
 const express=require('express')
+const methodOverride=require('method-override')
 const app= express()
 const mongoose = require('mongoose')
 const bodyParser = require('body-parser');
 // app.get('/',(req,res) => {
 //     res.send('Hello World!')
 // })
-
+app.use(methodOverride('_method'))
 mongoose.connect('mongodb://localhost/rotten-potatoes');
 const Review = mongoose.model('Review', {
   title: String,
@@ -62,8 +63,23 @@ app.get('/reviews/:id',(req,res) => {
         res.render('reviews-show',{review:review})
 }).catch((err)=>{
     console.log(err.message);
+}).catch(err=>{console.log(err.message)})
+});
+
+app.get('/reviews/:id/edit',function(req, res){
+    Review.findById(req.params.id, function(err,review){
+        res.render('reviews-edit',{review:review})
+    })
 })
-});// app.post('/reviews', (req, res) => {
+
+app.put('/reviews/:id',(req,res)=>{
+    Review.findByIdAndUpdate(req.params.id,req.body).then(review=>{
+        res.redirect(`/reviews/${review._id}`)
+    })
+})
+
+
+// app.post('/reviews', (req, res) => {
 //   console.log(req.body);
 //   //put a dub slash here if need be
 //   //res.render('reviews-new', {});
