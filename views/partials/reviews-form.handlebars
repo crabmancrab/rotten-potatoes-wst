@@ -4,7 +4,7 @@
     </legend>
 
     <p>
-        <label for="review-title">Movie Title</label><br>
+        <label for="review-title">Title</label><br>
         <input id="review-title" type="text" name="title" value="{{review.title}}"/>
     </p>
 
@@ -16,5 +16,17 @@
     <p>
         <label for="review-description">Description</label>
         <input id='review-description' type="text" name="description" rows='10'>
+    </p>
+
+    <p>
+      <select name="rating">
+          <option value="0">0</option>
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+          <option value="4">4</option>
+          <option value="5">5</option>
+
+      </select>
     </p>
 </fieldset>
