@@ -3,7 +3,7 @@ let routes = require('./controllers/reviews')
 const express=require('express')
 const methodOverride=require('method-override')
 const app= express()
-var mongoose = require('mongoose')
+const mongoose = require('mongoose')
 const bodyParser = require('body-parser');
 // app.get('/',(req,res) => {
 //     res.send('Hello World!')
