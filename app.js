@@ -3,7 +3,7 @@ let routes = require('./controllers/reviews')
 const express=require('express')
 const methodOverride=require('method-override')
 const app= express()
-const mongoose = require('mongoose')
+var mongoose = require('mongoose')
 const bodyParser = require('body-parser');
 // app.get('/',(req,res) => {
 //     res.send('Hello World!')
@@ -29,7 +29,7 @@ app.engine('handlebars', exphbs({defaultLayout: 'main'}));
 app.set('view engine', 'handlebars');
 
 
-
+mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/rotten-potatoes');
 // app.get('/', (req, res) => {
 //   res.render('home', { msg: 'Hello World!' });
 // })
