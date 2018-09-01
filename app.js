@@ -20,9 +20,9 @@ app.use(methodOverride('_method'))
 // });
 
 app.use(bodyParser.urlencoded({ extended: true }));
-app.listen(3000,() => {
-    console.log('App listening on port 3000!')
-})
+app.listen(process.env.PORT || 3000, function(){
+  console.log("Express server listening on port %d in %s mode", this.address().port, app.settings.env);
+});
 
 var exphbs = require('express-handlebars');
 
