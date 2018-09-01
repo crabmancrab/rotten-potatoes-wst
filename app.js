@@ -29,7 +29,7 @@ app.engine('handlebars', exphbs({defaultLayout: 'main'}));
 app.set('view engine', 'handlebars');
 
 
-mongoose.connect('mongodb://heroku_6hnbdz0t:unc9i8dqjh9dfrfjbq79tehor8@ds139632.mlab.com:39632/heroku_6hnbdz0t' || 'mongodb://localhost/rotten-potatoes');
+mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/rotten-potatoes');
 // app.get('/', (req, res) => {
 //   res.render('home', { msg: 'Hello World!' });
 // })
