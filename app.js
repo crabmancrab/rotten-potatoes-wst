@@ -1,5 +1,6 @@
 
 let routes = require('./controllers/reviews')
+let newRoutes = require('./controllers/comments')
 const express=require('express')
 const methodOverride=require('method-override')
 const app= express()
@@ -45,6 +46,8 @@ mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/rotten-potatoes
 //this is in controllers/review
 
 routes(app)
+newRoutes(app)
+
 
 // app.get('/', (req, res) => {
 //   Review.find()

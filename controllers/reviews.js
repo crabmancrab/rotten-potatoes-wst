@@ -1,5 +1,5 @@
 const Review = require('../models/reviews')
-
+const Comment = require('../models/comments')
 module.exports=function (app) {
 
   app.get('/', (req, res) => {
@@ -25,13 +25,27 @@ module.exports=function (app) {
     })
   })
 
-  app.get('/reviews/:id',(req,res) => {
-      Review.findById(req.params.id).then((review)=>{
-          res.render('reviews-show',{review:review})
-  }).catch((err)=>{
-      console.log(err.message);
-  }).catch(err=>{console.log(err.message)})
+  // app.get('/reviews/:id',(req,res) => {
+  //     Review.findById(req.params.id).then((review)=>{
+  //         res.render('reviews-show',{review:review})
+  // }).catch((err)=>{
+  //     console.log(err.message);
+  // }).catch(err=>{console.log(err.message)})
+  // });
+
+  app.get('/reviews/:id', (req, res) => {
+  // find review
+  Review.findById(req.params.id).then(review => {
+    // fetch its comments
+    Comment.find({ reviewId: req.params.id }).then(comments => {
+      // respond with the template with both values
+      res.render('reviews-show', { review: review, comments: comments })
+    })
+  }).catch((err) => {
+    // catch errors
+    console.log(err.message)
   });
+});
 
   app.get('/reviews/:id/edit',function(req, res){
       Review.findById(req.params.id, function(err,review){
@@ -53,6 +67,8 @@ module.exports=function (app) {
       console.log(err.message);
     })
   })
+
+
 
 
 }
