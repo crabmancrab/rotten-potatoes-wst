@@ -1,7 +1,6 @@
-
+let Movies = require('./controllers/movies')
 let routes = require('./controllers/reviews')
 let newRoutes = require('./controllers/comments')
-let Movies = require('./controllers/movies')
 const express=require('express')
 const methodOverride=require('method-override')
 const app= express()
