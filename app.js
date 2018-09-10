@@ -1,6 +1,7 @@
 
 let routes = require('./controllers/reviews')
 let newRoutes = require('./controllers/comments')
+let Movies = require('./controllers/movies')
 const express=require('express')
 const methodOverride=require('method-override')
 const app= express()
@@ -21,7 +22,7 @@ app.use(methodOverride('_method'))
 // });
 
 app.use(bodyParser.urlencoded({ extended: true }));
-app.listen(process.env.PORT || 3000, function(){
+module.exports = app.listen(process.env.PORT || 3000, function(){
   console.log("Express server listening on port %d in %s mode", this.address().port, app.settings.env);
 });
 
@@ -47,7 +48,7 @@ mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/rotten-potatoes
 
 routes(app)
 newRoutes(app)
-
+Movies(app)
 
 // app.get('/', (req, res) => {
 //   Review.find()
