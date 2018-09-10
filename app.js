@@ -1,4 +1,4 @@
-
+let Movies = require('./controllers/movies')
 let routes = require('./controllers/reviews')
 let newRoutes = require('./controllers/comments')
 const express=require('express')
@@ -47,6 +47,7 @@ mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/rotten-potatoes
 
 routes(app)
 newRoutes(app)
+Movies(app)
 
 
 // app.get('/', (req, res) => {
